@@ -1,0 +1,37 @@
+
+name: runner-update
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  runnerStart:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download and Configure Runner
+      run: |
+        setup_runner () {
+          function fatal()
+          {
+            echo "error: $1" >&2
+            exit 1
+          }
+          echo "ekko"
+        }
+
+        # we have seen sporadic issues with runner registration, so retry this for 3 times with 30 seconds sleep
+        n=0
+        while true
+        do
+          setup_runner || failed=true
+          if [ "$failed" = "true" ]; then
+            if [ "$n" = 3 ]; then
+              exit 1
+            fi
+            n=$((n+1))
+            sleep 30
+          else
+            break
+          fi
+        done
