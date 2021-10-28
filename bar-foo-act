@@ -1,0 +1,8 @@
+name: 'Bar calling Foo Action'
+description: ''
+runs:
+    using: "composite"
+    steps:
+      - uses: fhammerl/action-path/foo-act@main
+      - run: echo ${{ action_path }}
+        shell: bash
