@@ -4,5 +4,5 @@ runs:
     using: "composite"
     steps:
       - uses: fhammerl/action-path/foo-act@main
-      - run: echo ${{ action_path }}
+      - run: echo ${{ github.action_path }}
         shell: bash
