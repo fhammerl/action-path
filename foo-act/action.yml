@@ -1,0 +1,7 @@
+name: 'Foo Action'
+description: ''
+runs:
+    using: "composite"
+    steps:
+      - run: echo "${{ github.action_path }}
+        shell: bash
